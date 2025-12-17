@@ -7,7 +7,7 @@ import json
 app = FastAPI(title="GOT House Predictor API")
 
 # Load model and feature columns
-model = joblib.load("model_output/model.pkl")
+model = joblib.load("Fastapi/model_output/model.pkl")
 
 with open("Fastapi/feature_columns.json", "r") as f:
     feature_cols = json.load(f)["columns"]
