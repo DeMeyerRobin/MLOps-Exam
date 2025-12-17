@@ -4,6 +4,7 @@ emoji: 🐉
 colorFrom: blue
 colorTo: red
 sdk: docker
+app_file: Fastapi/app.py
 pinned: false
 ---
 
