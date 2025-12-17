@@ -1,0 +1,45 @@
+
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: train_decision_tree
+display_name: Train Decision Tree Classifier
+version: 5
+type: command
+
+inputs:
+  train_ready:
+    type: uri_folder
+  test_ready:
+    type: uri_folder
+  target_col:
+    type: string
+    default: house_affiliation
+  max_depth:
+    type: integer
+    default: 10
+  min_samples_split:
+    type: integer
+    default: 2
+  min_samples_leaf:
+    type: integer
+    default: 1
+  random_state:
+    type: integer
+    default: 42
+
+outputs:
+  model_output:
+    type: uri_folder
+
+code: .
+environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:1
+
+command: >
+  python train_component.py
+  --train_ready ${{inputs.train_ready}}
+  --test_ready ${{inputs.test_ready}}
+  --target_col ${{inputs.target_col}}
+  --max_depth ${{inputs.max_depth}}
+  --min_samples_split ${{inputs.min_samples_split}}
+  --min_samples_leaf ${{inputs.min_samples_leaf}}
+  --random_state ${{inputs.random_state}}
+  --model_output ${{outputs.model_output}}
